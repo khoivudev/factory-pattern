@@ -1,26 +1,116 @@
 @startuml
-abstract class Pizza {
-    prepare()
-    bake()
-    cut()
-    box()
-}
-class CheesePizza extends Pizza
-class VeggiePizza extends Pizza
-class ClamPizza extends Pizza
-class PepperoniPizza extends Pizza
-
-abstract class PizzaStore {
-    orderPizza()
-    abstract createPizza()
+package Client {
+    class PizzaTestDrive
+    
+    PizzaTestDrive --> Provider.PizzaStore
 }
 
-class NYStylePizzaStore extends PizzaStore {
-    createPizza()
+
+package Provider {
+    abstract class PizzaStore {
+        orderPizza()
+        abstract createPizza()
+    }
+    PizzaStore::createPizza --> Product.Pizza
+
+    class NYStylePizzaStore extends PizzaStore {
+        createPizza()
+    }
+
+    class ChicagoStylePizzaStore extends PizzaStore {
+        createPizza()
+    }
 }
 
-class ChicagoStylePizaStore extends PizzaStore {
-    createPizza()
+package Product {
+    Pizza::prepare --> Factory.PizzaIngredientFactory
+    abstract class Pizza {
+        String name
+        Dough dough
+        Sauce sauce
+        Veggies veggies
+        Cheese cheese
+        Pepperoni pepperoni
+        Clams clams
+
+        abstract prepare()
+        bake()
+        cut()
+        box()
+        setName()
+        getName()
+        toString()
+    }
+    
+    class CheesePizza extends Pizza {
+        PizzaIngredientFactory pizzaIngredientFactory
+        prepare()
+    }
+
+    class ClamPizza extends Pizza {
+        PizzaIngredientFactory pizzaIngredientFactory
+        prepare()
+    } 
+
+    class PepperoniPizza extends Pizza {
+        PizzaIngredientFactory pizzaIngredientFactory
+        prepare()
+    } 
+
+    class VeggiePizza extends Pizza {
+        PizzaIngredientFactory pizzaIngredientFactory
+        prepare()
+    } 
+}
+
+package Factory {
+    abstract class PizzaIngredientFactory
+
+    class NYPizzaIngredientFactory extends PizzaIngredientFactory {
+        createDough()
+        createSauce()
+        createCheese()
+        createVeggies()
+        createPepperoni()
+        createClams()
+    }
+    NYPizzaIngredientFactory::createDough --> Ingredient.ThinCrustDough
+    NYPizzaIngredientFactory::createSauce --> Ingredient.MarinaraSauce
+    NYPizzaIngredientFactory::createCheese --> Ingredient.ReggianoCheese
+    NYPizzaIngredientFactory::createClams --> Ingredient.FreshClams
+
+    class ChicagoPizzaIngredientFactory extends PizzaIngredientFactory {
+        createDough()
+        createSauce()
+        createCheese()
+        createVeggies()
+        createPepperoni()
+        createClams()
+    }
+    ChicagoPizzaIngredientFactory::createDough --> Ingredient.ThickCrustDough
+    ChicagoPizzaIngredientFactory::createSauce --> Ingredient.PlumTomatoSauce
+    ChicagoPizzaIngredientFactory::createCheese --> Ingredient.MozzarellaCheese
+    ChicagoPizzaIngredientFactory::createClams --> Ingredient.FrozenClams
+}
+
+package Ingredient {    
+    abstract class Dough
+    Dough -[hidden]down-- Sauce
+    abstract class Sauce
+    Sauce -[hidden]down-- Cheese
+    abstract class Cheese
+    Cheese -[hidden]down-- Clams
+    abstract class Clams 
+    
+    class ThickCrustDough extends Dough
+    class ThinCrustDough extends Dough
+    class FreshClams extends Clams
+    class FrozenClams extends Clams
+    class MozzarellaCheese extends Cheese
+    class ReggianoCheese extends Cheese
+    
+    class MarinaraSauce extends Sauce
+    class PlumTomatoSauce extends Sauce
 }
 
 @enduml

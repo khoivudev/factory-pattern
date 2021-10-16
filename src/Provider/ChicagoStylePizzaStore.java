@@ -1,18 +1,27 @@
 package Provider;
 
+import Factory.*;
 import Product.*;
 
 public class ChicagoStylePizzaStore extends PizzaStore {
-    
+
     public Pizza createPizza(String item) {
+        Pizza pizza = null;
+        PizzaIngredientFactory ingredientFactory = new ChicagoPizzaIngredientFactory();
+
         if(item.equals("cheese")) {
-            return new ChicagoStyleCheesePizza();
+            pizza = new CheesePizza(ingredientFactory);
+            pizza.setName("Chicago Style Cheese Pizza");
         } else if (item.equals("veggie")) {
-            return new ChicagoStyleVeggiePizza();
+            pizza = new VeggiePizza(ingredientFactory);
+            pizza.setName("Chicago Style Veggie Pizza");
         } else if (item.equals("clam")) {
-            return new ChicagoStyleClamPizza();
+            pizza = new ClamPizza(ingredientFactory);
+            pizza.setName("Chicago Style Clam Pizza");
         } else if (item.equals("pepperoni")) {
-            return new ChicagoStylePepperoniPizza();
-        } else return null;
+            pizza = new PepperoniPizza(ingredientFactory);
+            pizza.setName("Chicago Style Pepperoni Pizza");
+        }
+        return pizza;
     }
 }

@@ -1,6 +1,6 @@
 package Product;
 
-import java.util.ArrayList;
+import Ingredient.*;
 
 public abstract class Pizza {
     String name;
@@ -10,7 +10,7 @@ public abstract class Pizza {
     Veggies veggies[];
     Cheese cheese;
     Pepperoni pepperoni;
-    Clams clam;
+    Clams clams;
 
     abstract void prepare();
     
@@ -36,5 +36,6 @@ public abstract class Pizza {
 
     public String toString() {
         //code to print pizza here
+        return "";
     }
 }

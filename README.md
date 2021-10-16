@@ -1,0 +1,1 @@
+![alt text](https://github.com/khoivudev/factory-pattern-example/blob/pizza-store-v2/design/class_diagram.png)

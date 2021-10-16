@@ -1,5 +1,7 @@
 package Factory;
 
+import Ingredient.*;
+
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
     public Dough createDough() {
         return new ThinCrustDough();
@@ -22,7 +24,7 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
         return new SlicedPepperoni();
     }
 
-    public Clams createClam() {
+    public Clams createClams() {
         return new FreshClams();
     }
 }

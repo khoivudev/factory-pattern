@@ -1,3 +1,7 @@
+package Provider;
+
+import Product.*;
+
 public class ChicagoStylePizzaStore extends PizzaStore {
     
     public Pizza createPizza(String item) {

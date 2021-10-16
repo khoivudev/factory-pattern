@@ -1,3 +1,8 @@
+package Customer;
+
+import Product.*;
+import Provider.*;
+
 public class PizzaTestDrive {
     public static void main(String[] args) {
         PizzaStore nyStore = new NYStylePizzaStore();

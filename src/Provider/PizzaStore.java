@@ -1,3 +1,7 @@
+package Provider;
+
+import Product.Pizza;
+
 public abstract class PizzaStore {
     
     public Pizza orderPizza(String type) {
